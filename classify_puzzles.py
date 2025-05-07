@@ -47,7 +47,7 @@ def process_pgn_file(input_pgn_filepath, easy_output_filepath, hard_output_filep
     processed_puzzles_count = 0
     engine = None
 
-    PUZZLES_PER_BATCH = 50
+    PUZZLES_PER_BATCH = 25
     easy_batch_num = 0
     hard_batch_num = 0
     easy_puzzles_in_current_batch = 0
