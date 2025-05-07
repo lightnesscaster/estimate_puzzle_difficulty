@@ -3,6 +3,7 @@ import chess.pgn
 import chess.engine
 import io
 import sys # Import sys module
+import os # Import os module
 
 # IMPORTANT: User needs to configure these paths
 # Example for Linux/macOS if Maia is in the same directory:
@@ -55,9 +56,12 @@ def process_pgn_file(input_pgn_filepath, easy_output_filepath, hard_output_filep
     f_easy = None
     f_hard = None
 
-    # Derive base names for output batch files
-    easy_base_name = easy_output_filepath.rsplit('.', 1)[0]
-    hard_base_name = hard_output_filepath.rsplit('.', 1)[0]
+    # Derive base names for output batch files from the input filename
+    base_name_with_ext = os.path.basename(input_pgn_filepath)
+    base_name_without_ext = os.path.splitext(base_name_with_ext)[0]
+    
+    easy_base_name = f"{base_name_without_ext}_easy"
+    hard_base_name = f"{base_name_without_ext}_hard"
 
     print(f"Starting puzzle difficulty classification for file: {input_pgn_filepath}")
     print(f"Puzzles will be written in batches of {PUZZLES_PER_BATCH}.")
